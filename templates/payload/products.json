@@ -1,0 +1,326 @@
+{
+  "allProducts": [
+    {
+      "id": "4ffe20db-0f72-494b-bc25-a797de76db87",
+      "name": "Iphone 12 Mini",
+      "slug": "iphone-12-mini",
+      "brand": "Iphone",
+      "description": "New Apple Flagship Line up for A14 Bionic M1 processor",
+      "price": 82999,
+      "inStock": 15,
+      "sellerId": "ece18f27-39be-402a-9de1-9ad18af8192e",
+      "createdAt": "2021-04-20T18:53:53.088Z",
+      "updatedAt": "2021-04-20T18:58:55.950Z",
+      "Seller": {
+        "id": "ece18f27-39be-402a-9de1-9ad18af8192e",
+        "name": "ICare, Kolkata",
+        "proprietorName": "Steve jobs",
+        "address": "AC 111, Fancy Market, Kolkata",
+        "createdAt": "2021-04-20T18:47:24.818Z",
+        "updatedAt": "2021-04-20T18:47:24.818Z"
+      },
+      "categories": [
+        {
+          "id": "00a4791c-bcda-46d1-ae35-14fa0d420dc1",
+          "name": "smartphones",
+          "slug": "smartphones",
+          "description": "Collections of Smart phones",
+          "createdAt": "2021-04-20T18:47:02.833Z",
+          "updatedAt": "2021-04-20T18:47:02.833Z",
+          "ProductCategories": {
+            "id": "367033ba-b5fb-4bdc-a7a9-217c5b610397",
+            "productId": "4ffe20db-0f72-494b-bc25-a797de76db87",
+            "categoryId": "00a4791c-bcda-46d1-ae35-14fa0d420dc1",
+            "createdAt": "2021-04-20T18:53:53.241Z",
+            "updatedAt": "2021-04-20T18:53:53.241Z"
+          }
+        },
+        {
+          "id": "dd434c1a-cae0-4df1-9ded-404818f08b36",
+          "name": "Electronics",
+          "slug": "electronics",
+          "description": "Collections of Electronics",
+          "createdAt": "2021-04-20T18:46:39.542Z",
+          "updatedAt": "2021-04-20T18:46:39.542Z",
+          "ProductCategories": {
+            "id": "3f2b795c-048e-4ccd-9d0c-f5d9baf5b543",
+            "productId": "4ffe20db-0f72-494b-bc25-a797de76db87",
+            "categoryId": "dd434c1a-cae0-4df1-9ded-404818f08b36",
+            "createdAt": "2021-04-20T18:53:53.531Z",
+            "updatedAt": "2021-04-20T18:53:53.531Z"
+          }
+        },
+        {
+          "id": "77ce752d-daa3-4e67-baf6-b9f184b3bfa0",
+          "name": "apple",
+          "slug": "apple",
+          "description": "Collections of Apple products",
+          "createdAt": "2021-04-20T18:46:50.033Z",
+          "updatedAt": "2021-04-20T18:46:50.033Z",
+          "ProductCategories": {
+            "id": "43db9318-1c85-46d4-ae55-3c1c97112739",
+            "productId": "4ffe20db-0f72-494b-bc25-a797de76db87",
+            "categoryId": "77ce752d-daa3-4e67-baf6-b9f184b3bfa0",
+            "createdAt": "2021-04-20T18:53:53.385Z",
+            "updatedAt": "2021-04-20T18:53:53.385Z"
+          }
+        }
+      ],
+      "tags": [
+        {
+          "id": 3,
+          "name": "mobile",
+          "slug": "mobile",
+          "desctiption": null,
+          "createdAt": "2021-04-20T18:45:52.217Z",
+          "updatedAt": "2021-04-20T18:45:52.217Z",
+          "ProductTags": {
+            "id": "209d3464-8e51-4db0-9833-4bc7644d3ea7",
+            "productId": "4ffe20db-0f72-494b-bc25-a797de76db87",
+            "tagId": 3,
+            "createdAt": "2021-04-20T18:53:53.945Z",
+            "updatedAt": "2021-04-20T18:53:53.945Z",
+            "ProductId": "4ffe20db-0f72-494b-bc25-a797de76db87",
+            "TagId": 3
+          }
+        },
+        {
+          "id": 1,
+          "name": "iphone",
+          "slug": "iphone",
+          "desctiption": null,
+          "createdAt": "2021-04-20T18:45:10.985Z",
+          "updatedAt": "2021-04-20T18:45:10.985Z",
+          "ProductTags": {
+            "id": "7d67695c-6206-4f4d-b1d3-c39bf4adcb92",
+            "productId": "4ffe20db-0f72-494b-bc25-a797de76db87",
+            "tagId": 1,
+            "createdAt": "2021-04-20T18:53:53.732Z",
+            "updatedAt": "2021-04-20T18:53:53.732Z",
+            "ProductId": "4ffe20db-0f72-494b-bc25-a797de76db87",
+            "TagId": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "fbf02be3-7bc5-4c39-beec-14feec79dbc8",
+      "name": "Iphone 12",
+      "slug": "iphone-12",
+      "brand": "Iphone",
+      "description": "New Apple Flagship Line up for A14 Bionic M1 processor",
+      "price": 87999,
+      "inStock": 15,
+      "sellerId": "ece18f27-39be-402a-9de1-9ad18af8192e",
+      "createdAt": "2021-04-20T18:49:49.339Z",
+      "updatedAt": "2021-04-20T18:58:56.284Z",
+      "Seller": {
+        "id": "ece18f27-39be-402a-9de1-9ad18af8192e",
+        "name": "ICare, Kolkata",
+        "proprietorName": "Steve jobs",
+        "address": "AC 111, Fancy Market, Kolkata",
+        "createdAt": "2021-04-20T18:47:24.818Z",
+        "updatedAt": "2021-04-20T18:47:24.818Z"
+      },
+      "categories": [
+        {
+          "id": "dd434c1a-cae0-4df1-9ded-404818f08b36",
+          "name": "Electronics",
+          "slug": "electronics",
+          "description": "Collections of Electronics",
+          "createdAt": "2021-04-20T18:46:39.542Z",
+          "updatedAt": "2021-04-20T18:46:39.542Z",
+          "ProductCategories": {
+            "id": "482a98b6-a325-4340-bb70-98f0ad97de5f",
+            "productId": "fbf02be3-7bc5-4c39-beec-14feec79dbc8",
+            "categoryId": "dd434c1a-cae0-4df1-9ded-404818f08b36",
+            "createdAt": "2021-04-20T18:49:49.810Z",
+            "updatedAt": "2021-04-20T18:49:49.810Z"
+          }
+        },
+        {
+          "id": "77ce752d-daa3-4e67-baf6-b9f184b3bfa0",
+          "name": "apple",
+          "slug": "apple",
+          "description": "Collections of Apple products",
+          "createdAt": "2021-04-20T18:46:50.033Z",
+          "updatedAt": "2021-04-20T18:46:50.033Z",
+          "ProductCategories": {
+            "id": "6ecdd888-88c7-4fa6-821b-d5d814741df2",
+            "productId": "fbf02be3-7bc5-4c39-beec-14feec79dbc8",
+            "categoryId": "77ce752d-daa3-4e67-baf6-b9f184b3bfa0",
+            "createdAt": "2021-04-20T18:49:49.674Z",
+            "updatedAt": "2021-04-20T18:49:49.674Z"
+          }
+        },
+        {
+          "id": "00a4791c-bcda-46d1-ae35-14fa0d420dc1",
+          "name": "smartphones",
+          "slug": "smartphones",
+          "description": "Collections of Smart phones",
+          "createdAt": "2021-04-20T18:47:02.833Z",
+          "updatedAt": "2021-04-20T18:47:02.833Z",
+          "ProductCategories": {
+            "id": "8d176f6b-9d14-4f1b-bc3d-f97a8637aac7",
+            "productId": "fbf02be3-7bc5-4c39-beec-14feec79dbc8",
+            "categoryId": "00a4791c-bcda-46d1-ae35-14fa0d420dc1",
+            "createdAt": "2021-04-20T18:49:49.519Z",
+            "updatedAt": "2021-04-20T18:49:49.519Z"
+          }
+        }
+      ],
+      "tags": [
+        {
+          "id": 3,
+          "name": "mobile",
+          "slug": "mobile",
+          "desctiption": null,
+          "createdAt": "2021-04-20T18:45:52.217Z",
+          "updatedAt": "2021-04-20T18:45:52.217Z",
+          "ProductTags": {
+            "id": "54ef241b-35fa-41a6-aa17-b2747835218d",
+            "productId": "fbf02be3-7bc5-4c39-beec-14feec79dbc8",
+            "tagId": 3,
+            "createdAt": "2021-04-20T18:49:50.135Z",
+            "updatedAt": "2021-04-20T18:49:50.135Z",
+            "ProductId": "fbf02be3-7bc5-4c39-beec-14feec79dbc8",
+            "TagId": 3
+          }
+        },
+        {
+          "id": 2,
+          "name": "apple",
+          "slug": "apple",
+          "desctiption": null,
+          "createdAt": "2021-04-20T18:45:24.101Z",
+          "updatedAt": "2021-04-20T18:45:24.101Z",
+          "ProductTags": {
+            "id": "8076764d-d445-4835-a324-c581f1911a19",
+            "productId": "fbf02be3-7bc5-4c39-beec-14feec79dbc8",
+            "tagId": 2,
+            "createdAt": "2021-04-20T18:49:49.967Z",
+            "updatedAt": "2021-04-20T18:49:49.967Z",
+            "ProductId": "fbf02be3-7bc5-4c39-beec-14feec79dbc8",
+            "TagId": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "61839f45-4f67-4887-b630-56e82d89b817",
+      "name": "Iphone 11 Pro",
+      "slug": "iphone-11-pro",
+      "brand": "Iphone",
+      "description": "New Apple Flagship Line up for A13 Bionic processor",
+      "price": 67999,
+      "inStock": 34,
+      "sellerId": "9aecf718-964e-47f5-84d8-fa6e145bb8be",
+      "createdAt": "2021-04-20T18:48:51.377Z",
+      "updatedAt": "2021-04-20T18:48:51.377Z",
+      "Seller": null,
+      "categories": [
+        {
+          "id": "77ce752d-daa3-4e67-baf6-b9f184b3bfa0",
+          "name": "apple",
+          "slug": "apple",
+          "description": "Collections of Apple products",
+          "createdAt": "2021-04-20T18:46:50.033Z",
+          "updatedAt": "2021-04-20T18:46:50.033Z",
+          "ProductCategories": {
+            "id": "2a1b04c0-fffb-40db-8c2a-99903710f455",
+            "productId": "61839f45-4f67-4887-b630-56e82d89b817",
+            "categoryId": "77ce752d-daa3-4e67-baf6-b9f184b3bfa0",
+            "createdAt": "2021-04-20T18:48:51.698Z",
+            "updatedAt": "2021-04-20T18:48:51.698Z"
+          }
+        },
+        {
+          "id": "00a4791c-bcda-46d1-ae35-14fa0d420dc1",
+          "name": "smartphones",
+          "slug": "smartphones",
+          "description": "Collections of Smart phones",
+          "createdAt": "2021-04-20T18:47:02.833Z",
+          "updatedAt": "2021-04-20T18:47:02.833Z",
+          "ProductCategories": {
+            "id": "5439a3d5-9d88-4346-994c-487302700c1e",
+            "productId": "61839f45-4f67-4887-b630-56e82d89b817",
+            "categoryId": "00a4791c-bcda-46d1-ae35-14fa0d420dc1",
+            "createdAt": "2021-04-20T18:48:51.565Z",
+            "updatedAt": "2021-04-20T18:48:51.565Z"
+          }
+        },
+        {
+          "id": "dd434c1a-cae0-4df1-9ded-404818f08b36",
+          "name": "Electronics",
+          "slug": "electronics",
+          "description": "Collections of Electronics",
+          "createdAt": "2021-04-20T18:46:39.542Z",
+          "updatedAt": "2021-04-20T18:46:39.542Z",
+          "ProductCategories": {
+            "id": "bc7036a5-6b78-4064-a0bd-35754af762e1",
+            "productId": "61839f45-4f67-4887-b630-56e82d89b817",
+            "categoryId": "dd434c1a-cae0-4df1-9ded-404818f08b36",
+            "createdAt": "2021-04-20T18:48:51.865Z",
+            "updatedAt": "2021-04-20T18:48:51.865Z"
+          }
+        }
+      ],
+      "tags": [
+        {
+          "id": 2,
+          "name": "apple",
+          "slug": "apple",
+          "desctiption": null,
+          "createdAt": "2021-04-20T18:45:24.101Z",
+          "updatedAt": "2021-04-20T18:45:24.101Z",
+          "ProductTags": {
+            "id": "92ecd4fd-bb27-4974-85b2-5c8ac07f9378",
+            "productId": "61839f45-4f67-4887-b630-56e82d89b817",
+            "tagId": 2,
+            "createdAt": "2021-04-20T18:48:52.032Z",
+            "updatedAt": "2021-04-20T18:48:52.032Z",
+            "ProductId": "61839f45-4f67-4887-b630-56e82d89b817",
+            "TagId": 2
+          }
+        },
+        {
+          "id": 3,
+          "name": "mobile",
+          "slug": "mobile",
+          "desctiption": null,
+          "createdAt": "2021-04-20T18:45:52.217Z",
+          "updatedAt": "2021-04-20T18:45:52.217Z",
+          "ProductTags": {
+            "id": "e5381426-6fc3-4163-b6d2-3dc0da2e579e",
+            "productId": "61839f45-4f67-4887-b630-56e82d89b817",
+            "tagId": 3,
+            "createdAt": "2021-04-20T18:48:52.201Z",
+            "updatedAt": "2021-04-20T18:48:52.201Z",
+            "ProductId": "61839f45-4f67-4887-b630-56e82d89b817",
+            "TagId": 3
+          }
+        },
+        {
+          "id": 1,
+          "name": "iphone",
+          "slug": "iphone",
+          "desctiption": null,
+          "createdAt": "2021-04-20T18:45:10.985Z",
+          "updatedAt": "2021-04-20T18:45:10.985Z",
+          "ProductTags": {
+            "id": "ec3039d5-0188-401e-9726-a32ab4f4b069",
+            "productId": "61839f45-4f67-4887-b630-56e82d89b817",
+            "tagId": 1,
+            "createdAt": "2021-04-20T18:48:52.356Z",
+            "updatedAt": "2021-04-20T18:48:52.356Z",
+            "ProductId": "61839f45-4f67-4887-b630-56e82d89b817",
+            "TagId": 1
+          }
+        }
+      ]
+    }
+  ],
+  "statusCode": 200,
+  "status": true,
+  "found": 3
+}

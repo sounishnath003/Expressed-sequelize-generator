@@ -1,0 +1,42 @@
+{
+  "statusCode": 200,
+  "status": true,
+  "allSellers": [
+    {
+      "id": "ece18f27-39be-402a-9de1-9ad18af8192e",
+      "name": "ICare, Kolkata",
+      "proprietorName": "Steve jobs",
+      "address": "AC 111, Fancy Market, Kolkata",
+      "createdAt": "2021-04-20T18:47:24.818Z",
+      "updatedAt": "2021-04-20T18:47:24.818Z",
+      "products": [
+        {
+          "id": "4ffe20db-0f72-494b-bc25-a797de76db87",
+          "name": "Iphone 12 Mini",
+          "slug": "iphone-12-mini",
+          "brand": "Iphone",
+          "description": "New Apple Flagship Line up for A14 Bionic M1 processor",
+          "price": 82999,
+          "inStock": 14,
+          "sellerId": "ece18f27-39be-402a-9de1-9ad18af8192e",
+          "createdAt": "2021-04-20T18:53:53.088Z",
+          "updatedAt": "2021-04-20T19:06:15.650Z",
+          "SellerId": "ece18f27-39be-402a-9de1-9ad18af8192e"
+        },
+        {
+          "id": "fbf02be3-7bc5-4c39-beec-14feec79dbc8",
+          "name": "Iphone 12",
+          "slug": "iphone-12",
+          "brand": "Iphone",
+          "description": "New Apple Flagship Line up for A14 Bionic M1 processor",
+          "price": 87999,
+          "inStock": 15,
+          "sellerId": "ece18f27-39be-402a-9de1-9ad18af8192e",
+          "createdAt": "2021-04-20T18:49:49.339Z",
+          "updatedAt": "2021-04-20T18:58:56.284Z",
+          "SellerId": "ece18f27-39be-402a-9de1-9ad18af8192e"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "statusCode": 200,
+  "status": true,
+  "allCategories": [
+    {
+      "id": "00a4791c-bcda-46d1-ae35-14fa0d420dc1",
+      "name": "smartphones",
+      "slug": "smartphones",
+      "description": "Collections of Smart phones",
+      "createdAt": "2021-04-20T18:47:02.833Z",
+      "updatedAt": "2021-04-20T18:47:02.833Z",
+      "products": []
+    },
+    {
+      "id": "77ce752d-daa3-4e67-baf6-b9f184b3bfa0",
+      "name": "apple",
+      "slug": "apple",
+      "description": "Collections of Apple products",
+      "createdAt": "2021-04-20T18:46:50.033Z",
+      "updatedAt": "2021-04-20T18:46:50.033Z",
+      "products": []
+    },
+    {
+      "id": "dd434c1a-cae0-4df1-9ded-404818f08b36",
+      "name": "Electronics",
+      "slug": "electronics",
+      "description": "Collections of Electronics",
+      "createdAt": "2021-04-20T18:46:39.542Z",
+      "updatedAt": "2021-04-20T18:46:39.542Z",
+      "products": []
+    }
+  ]
+}

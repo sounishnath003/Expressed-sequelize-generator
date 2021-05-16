@@ -73,32 +73,75 @@ async function createOrCheckIfFolderExists(rootDirectory) {
     }
 }
 
+
+async function done(arg) {
+    console.log(chalk.yellow('\n------------------------------------'));
+    console.log('Begin by typing:');
+    console.group();
+    console.log(chalk.blue('cd'), arg);
+    console.log(chalk.blue('npm run dev'));
+    console.group();
+    console.log('starts the development server (using nodemon 🧐)');
+    console.groupEnd();
+    console.log(chalk.blue('npm start'));
+    console.group();
+    console.log(`starts the server (using node 😁)`);
+    console.groupEnd();
+    console.groupEnd();
+    console.log(chalk.yellow('------------------------------------'));
+
+    const endTime = new Date().getTime();
+    const timeDifference = (endTime - startTime) / 1000;
+    console.log(`✅ Done in ${timeDifference} seconds ✨`);
+    console.log('🌈 Happy hacking 🦄');
+}
+
+// Creating Package.json File || Installed Script with Spawning up a child Thread
 async function scriptInstallerInBatch(rootDirectory, command, argumentsPassed, comments) {
     return new Promise((resolve, reject) => {
         const spinner = ora({color: "cyan", text: comments, spinner: "dots"}).start();
-
         // Info:
         // The child_process module provides the ability to spawn
         // subprocesses in a manner that is similar,
         // Link: https://nodejs.org/api/child_process.html
-        const child = spawn(command, argumentsPassed, {cwd: rootDirectory});
-        child.stderr.on('data', (data) => console.log('stderr...'));
-        child.stdout.on('data', (data) => console.log('stdout...'));
-        child.on('exit', (code, signal) => {
+        const childProcess = spawn(command, argumentsPassed, {cwd: rootDirectory, shell: true})
+        childProcess.on('exit', (code, signal) => {
             if (code) {
                 spinner.fail();
-                console.log(`Process exit with code: ${code}`);
-                reject(`Process exit with code: ${code}`);
+                reject(log(`Process execution terminated with ${code}`));
             } else if (signal) {
                 spinner.fail();
-                console.log(`Process exit with signal: ${signal}`);
-                reject(`Process exit with signal: ${signal}`);
+                reject(log(`Process execution terminated with signal: ${signal}`));
             } else {
                 spinner.succeed();
-                resolve();
+                resolve(true);
             }
         })
-    })
+    });
+    return true;
+}
+
+async function generateCustomTemplateSnippets(rootDirectory) {
+    return new Promise(((resolve, reject) => {
+        const spinner = ora({
+            spinner: 'balloon',
+            text: 'Mixins up some magical spells.... Pouring files into jar',
+            color: 'yellow'
+        });
+
+        try{
+        /*
+            * Template folder e ja ache -> soja tene rootdirectory te dukiye debo!
+            * Happy Snippets
+         */
+
+
+
+        }catch (e) {
+            spinner.fail();
+            reject(e);
+        }
+    }))
 }
 
 // Script for creating workflow
@@ -113,18 +156,22 @@ async function boostrapWorkflow(rootDirectory) {
             );
         }
     });
+
     log('🐱‍🏍 Bootstrapping Express app in', chalk.green(rootDirectory), '\n');
     await scriptInstallerInBatch(rootDirectory, 'npm',
         ['init', '-y'], `Creating Package.json file...`);
+
+    await generateCustomTemplateSnippets(rootDirectory)
 }
 
 export async function main() {
+    await buildProfileInfoBanner();
     const argsPassed = getArgs();
     const rootDirectory = path.join(process.cwd(), argsPassed[0]);
     await (async function () {
-        await buildProfileInfoBanner();
         await boostrapWorkflow(rootDirectory);
     })()
+    await done(argsPassed[0]);
 }
 
 
