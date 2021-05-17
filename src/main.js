@@ -249,11 +249,3 @@ export async function main() {
 // -----------------------------------------------------------------------
 // *********************************************************
 // -----------------------------------------------------------------------
-
-
-// await scriptInstallerInBatch(rootDirectory, 'npm', modulesToBeInstalled,
-//     'Installing required modules for bootstapping...');
-// await scriptInstallerInBatch(rootDirectory, 'npm', moduleTypesDeclarations,
-//     'Updating Type definations for modules...');
-// await scriptInstallerInBatch(rootDirectory, 'tsc', '--init',
-//     'Generating TypeScript.json file...');
