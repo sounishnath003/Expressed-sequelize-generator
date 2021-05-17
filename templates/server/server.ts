@@ -5,8 +5,7 @@ import morgan from "morgan";
 import { cpus } from "os";
 import { pid } from "process";
 import { connectToDatabase } from "../database";
-import { buildAssociationsBetweenSchemas, User } from "../database/schema";
-import { Role, RoleInterface } from "../database/schema/role.schema";
+import { buildAssociationsBetweenSchemas } from "../database/schema";
 import { APIController } from "./controllers";
 
 export class Server {

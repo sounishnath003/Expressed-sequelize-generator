@@ -6,10 +6,13 @@ import boxen from "boxen";
 import * as fs from 'fs';
 import ora from "ora";
 import {spawn} from 'child_process';
-
+import * as fse from 'fs-extra';
 // utils
 const log = console.log;
 const startTime = new Date().getTime();
+
+const modulesToBeInstalled = ['install', 'express', 'sequelize', 'cors', 'morgan', 'sqlite3', 'typescript', 'ts-node', 'dotenv', 'express-fileupload'];
+const moduleTypesDeclarations = ['install', '@types/express', '@types/sequelize', '@types/cors', '@types/morgan', '@types/node', '@types/express-fileupload' , 'nodemon', '-D'];
 
 // Getting arguments from user CLI
 function getArgs() {
@@ -79,13 +82,13 @@ async function done(arg) {
     console.log('Begin by typing:');
     console.group();
     console.log(chalk.blue('cd'), arg);
-    console.log(chalk.blue('npm run dev'));
+    console.log(chalk.blue('yarn dev'));
     console.group();
-    console.log('starts the development server (using nodemon 🧐)');
+    console.log('starts the development server (using nodemon 🐱‍🏍🔥)');
     console.groupEnd();
-    console.log(chalk.blue('npm start'));
+    console.log(chalk.blue('yarn start'));
     console.group();
-    console.log(`starts the server (using node 😁)`);
+    console.log(`starts the server (using node 🎉)`);
     console.groupEnd();
     console.groupEnd();
     console.log(chalk.yellow('------------------------------------'));
@@ -96,6 +99,23 @@ async function done(arg) {
     console.log('🌈 Happy hacking 🦄');
 }
 
+async function waitForChilProcessToCompleteAndFeedBackToParent(childProcess, spinner, reject, resolve) {
+    // childProcess.stdout.on('data', (chunk) => log(chunk.toJSON()) );
+    childProcess.stdout.pipe(process.stdout);
+    childProcess.on('exit', (code, signal) => {
+        if (code) {
+            spinner.fail();
+            reject(log(`Process execution terminated with ${code}`));
+        } else if (signal) {
+            spinner.fail();
+            reject(log(`Process execution terminated with signal: ${signal}`));
+        } else {
+            spinner.succeed();
+            resolve(true);
+        }
+    })
+}
+
 // Creating Package.json File || Installed Script with Spawning up a child Thread
 async function scriptInstallerInBatch(rootDirectory, command, argumentsPassed, comments) {
     return new Promise((resolve, reject) => {
@@ -104,42 +124,67 @@ async function scriptInstallerInBatch(rootDirectory, command, argumentsPassed, c
         // The child_process module provides the ability to spawn
         // subprocesses in a manner that is similar,
         // Link: https://nodejs.org/api/child_process.html
-        const childProcess = spawn(command, argumentsPassed, {cwd: rootDirectory, shell: true})
-        childProcess.on('exit', (code, signal) => {
-            if (code) {
-                spinner.fail();
-                reject(log(`Process execution terminated with ${code}`));
-            } else if (signal) {
-                spinner.fail();
-                reject(log(`Process execution terminated with signal: ${signal}`));
-            } else {
-                spinner.succeed();
-                resolve(true);
-            }
-        })
+        const childProcess = spawn(command, argumentsPassed, {cwd: rootDirectory, detached: false, shell: 'cmd'})
+        waitForChilProcessToCompleteAndFeedBackToParent(childProcess, spinner, reject, resolve);
     });
     return true;
 }
 
-async function generateCustomTemplateSnippets(rootDirectory) {
+async function generateCustomTemplateSnippets(projectName) {
     return new Promise(((resolve, reject) => {
         const spinner = ora({
             spinner: 'balloon',
             text: 'Mixins up some magical spells.... Pouring files into jar',
             color: 'yellow'
-        });
+        }).start();
 
-        try{
-        /*
-            * Template folder e ja ache -> soja tene rootdirectory te dukiye debo!
-            * Happy Snippets
-         */
+        try {
+            /*
+                * Template folder e ja ache -> soja tene rootdirectory te dukiye debo!
+                * Happy Snippets
+             */
+            const sourceDirectory = path.join(process.cwd(), 'templates');
+            const destinationDirectory = path.join(projectName);
 
-
-
-        }catch (e) {
+            fse.copySync(sourceDirectory, destinationDirectory, {overwrite: 'true'}, (err) => {
+                if (err) throw new Error();
+            })
+            spinner.succeed();
+            resolve(true);
+        } catch (e) {
             spinner.fail();
             reject(e);
+        }
+    }))
+}
+
+async function modifyPackageJson(rootDirectory) {
+    return await new Promise((async (resolve, reject) => {
+        const spinner = ora({color: 'red', text: 'Modifying package.json file...'}).start();
+        try {
+            const filePath = path.join(rootDirectory, 'package.json');
+
+            fs.readFile(filePath, {encoding: 'utf-8'}, ((err, data) => {
+                if (err) throw new Error();
+
+                data = JSON.parse(data);
+                let updatedPackageJsonData = {
+                    ...data,
+                    name: rootDirectory.trim().toLowerCase().replace(' ', '-')
+                }
+                updatedPackageJsonData = JSON.stringify(updatedPackageJsonData, null, 2);
+
+                fs.writeFile(filePath, updatedPackageJsonData, (err) => {
+                    if (err) throw new Error('Cannot update Package.json file...')
+
+                    spinner.succeed();
+                    resolve(true);
+                })
+            }))
+
+        } catch (e) {
+            reject(e);
+            spinner.fail();
         }
     }))
 }
@@ -158,10 +203,26 @@ async function boostrapWorkflow(rootDirectory) {
     });
 
     log('🐱‍🏍 Bootstrapping Express app in', chalk.green(rootDirectory), '\n');
-    await scriptInstallerInBatch(rootDirectory, 'npm',
-        ['init', '-y'], `Creating Package.json file...`);
+    await (async function () {
+        await scriptInstallerInBatch(rootDirectory, 'npm',
+            ['init', '-y'], `Creating Package.json file...`);
+    })()
+}
 
-    await generateCustomTemplateSnippets(rootDirectory)
+async function startInstallingModules(rootDirectory, whatToBeInstalled) {
+    return new Promise((async (resolve, reject) => {
+        const spinner = ora({
+            color: 'green', text: "Please wait few seconds... " +
+                "while installing required modules"
+        }).start();
+        try {
+            const chilProcess = spawn('npm', whatToBeInstalled, {shell: true, cwd: rootDirectory});
+            await waitForChilProcessToCompleteAndFeedBackToParent(chilProcess, spinner, reject, resolve);
+        } catch (e) {
+            spinner.fail();
+            reject(e);
+        }
+    }))
 }
 
 export async function main() {
@@ -170,11 +231,29 @@ export async function main() {
     const rootDirectory = path.join(process.cwd(), argsPassed[0]);
     await (async function () {
         await boostrapWorkflow(rootDirectory);
+        await generateCustomTemplateSnippets(argsPassed[0]);
+        await modifyPackageJson(argsPassed[0]);
+        await scriptInstallerInBatch(rootDirectory, 'npm', modulesToBeInstalled,
+            'Installing dev dependencies for bootstrapping ...');
+        await scriptInstallerInBatch(rootDirectory, 'npm', moduleTypesDeclarations,
+            'Updating Type definitions for modules ...');
+        await scriptInstallerInBatch(rootDirectory, 'npx', ['tsc', '--init'],
+            'Generating TypeScript.json file ...');
+        await scriptInstallerInBatch(rootDirectory, 'npm', ['upgrade'],
+            'Upgrading dependencies peer...');
+        await done(argsPassed[0])
     })()
-    await done(argsPassed[0]);
 }
 
 
 // -----------------------------------------------------------------------
 // *********************************************************
 // -----------------------------------------------------------------------
+
+
+// await scriptInstallerInBatch(rootDirectory, 'npm', modulesToBeInstalled,
+//     'Installing required modules for bootstapping...');
+// await scriptInstallerInBatch(rootDirectory, 'npm', moduleTypesDeclarations,
+//     'Updating Type definations for modules...');
+// await scriptInstallerInBatch(rootDirectory, 'tsc', '--init',
+//     'Generating TypeScript.json file...');
