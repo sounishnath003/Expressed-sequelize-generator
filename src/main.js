@@ -12,8 +12,8 @@ import * as fse from 'fs-extra';
 const log = console.log;
 const startTime = new Date().getTime();
 
-const modulesToBeInstalled = ['install', 'express', 'sequelize', 'cors', 'morgan', 'sqlite3', 'typescript', 'ts-node', 'dotenv', 'express-fileupload'];
-const moduleTypesDeclarations = ['install', '@types/express', '@types/sequelize', '@types/cors', '@types/morgan', '@types/node', '@types/express-fileupload' , 'nodemon', '-D'];
+const modulesToBeInstalled = ['install', 'express', 'sequelize', 'cors', 'morgan', 'sqlite3', 'typescript', 'ts-node', 'dotenv', 'express-fileupload', 'http-errors'];cls
+const moduleTypesDeclarations = ['install', '@types/express', '@types/sequelize', '@types/cors', '@types/morgan', '@types/node', '@types/express-fileupload', 'nodemon', '@types/http-errors' ,'-D'];
 
 // Getting arguments from user CLI
 function getArgs() {
@@ -227,6 +227,17 @@ async function startInstallingModules(rootDirectory, whatToBeInstalled) {
     }))
 }
 
+async function npmInstallRequiredModules(rootDirectory) {
+    await scriptInstallerInBatch(rootDirectory, 'npm', modulesToBeInstalled,
+        'Installing dev dependencies for bootstrapping ...');
+    await scriptInstallerInBatch(rootDirectory, 'npm', moduleTypesDeclarations,
+        'Updating Type definitions for modules ...');
+    await scriptInstallerInBatch(rootDirectory, 'npx', ['tsc', '--init'],
+        'Generating TypeScript.json file ...');
+    await scriptInstallerInBatch(rootDirectory, 'npm', ['upgrade'],
+        'Upgrading dependencies peer...');
+}
+
 export async function main() {
     await buildProfileInfoBanner();
     const argsPassed = getArgs();
@@ -235,14 +246,7 @@ export async function main() {
         await boostrapWorkflow(rootDirectory);
         await generateCustomTemplateSnippets(argsPassed[0]);
         await modifyPackageJson(argsPassed[0]);
-        await scriptInstallerInBatch(rootDirectory, 'npm', modulesToBeInstalled,
-            'Installing dev dependencies for bootstrapping ...');
-        await scriptInstallerInBatch(rootDirectory, 'npm', moduleTypesDeclarations,
-            'Updating Type definitions for modules ...');
-        await scriptInstallerInBatch(rootDirectory, 'npx', ['tsc', '--init'],
-            'Generating TypeScript.json file ...');
-        await scriptInstallerInBatch(rootDirectory, 'npm', ['upgrade'],
-            'Upgrading dependencies peer...');
+        await npmInstallRequiredModules(rootDirectory);
         await done(argsPassed[0])
     })()
 }
