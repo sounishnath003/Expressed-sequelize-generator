@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import logSymbols from "log-symbols";
 import chalk from "chalk";
 import * as path from "path";
