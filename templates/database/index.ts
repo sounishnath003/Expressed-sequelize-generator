@@ -6,7 +6,7 @@ const dir = join (__dirname , "");
 export const db = new Sequelize ({
     dialect :"sqlite" ,
     storage :`${dir}/db-store.sqlite` ,
-    database :"ecommerceX" ,
+    database :"projectDB" ,
 });
 
 async function connectToDatabase() {

@@ -50,7 +50,7 @@ async function buildProfileInfoBanner() {
         const header = `${youtube}\n${social}`;
         console.log(
             boxen(header, {
-                borderColor: 'red',
+                borderColor: 'yellow',
                 borderStyle: 'double',
                 align: 'center',
             })
@@ -72,7 +72,8 @@ async function createOrCheckIfFolderExists(rootDirectory) {
             log(chalk.green.bold.underline(`${rootDirectory} is already created!`))
 
     } catch (error) {
-        console.error({error});
+        console.dir(error);
+        return;
     }
 }
 
