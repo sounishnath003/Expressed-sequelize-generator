@@ -1,31 +1,31 @@
 #!/usr/bin/env node
-import logSymbols from "log-symbols";
-import chalk from "chalk";
-import * as path from "path";
-import figlet from 'figlet';
-import boxen from "boxen";
-import * as fs from 'fs';
-import ora from "ora";
-import {spawn} from 'child_process';
-import * as fse from 'fs-extra';
+const {spawn} = require('child_process');
+const path = require('path');
+const fs = require('fs');
+const fse = require('fs-extra');
+const figlet = require('figlet');
+const chalk = require('chalk');
+const ora = require('ora');
+const boxen = require('boxen');
+
 // utils
 const log = console.log;
 const startTime = new Date().getTime();
 
-const modulesToBeInstalled = ['install', 'express', 'sequelize', 'cors', 'morgan', 'sqlite3', 'typescript', 'ts-node', 'dotenv', 'express-fileupload', 'http-errors'];cls
-const moduleTypesDeclarations = ['install', '@types/express', '@types/sequelize', '@types/cors', '@types/morgan', '@types/node', '@types/express-fileupload', 'nodemon', '@types/http-errors' ,'-D'];
+const modulesToBeInstalled = ['install', 'express', 'sequelize', 'cors', 'morgan', 'sqlite3', 'typescript', 'ts-node', 'dotenv', 'express-fileupload', 'http-errors'];
+const moduleTypesDeclarations = ['install', '@types/express', '@types/sequelize', '@types/cors', '@types/morgan', '@types/node', '@types/express-fileupload', 'nodemon', '@types/http-errors', '-D'];
 
 // Getting arguments from user CLI
 function getArgs() {
     const argvs = process.argv.slice(2)
     if (argvs.length === 0) {
-        log(logSymbols.error, chalk.red.underline.bold(`No valid arguments were passed!`));
+        log('💀 ⚡', chalk.red.underline.bold(`No valid arguments were passed!`));
         log(chalk.blue.bold(`Quick start...`));
         {
             console.group();
-            log(chalk.green(`expressed .`));
+            log(chalk.green(`expressed-gen .`));
             log('OR');
-            log(chalk.green(`expressed my-node-api`));
+            log(chalk.green(`expressed-gen my-node-api`));
             log(`installs in "my-node-api" directory (${path.join(process.cwd(), 'my-node-api')})`)
             console.groupEnd();
         }
@@ -74,7 +74,7 @@ async function createOrCheckIfFolderExists(rootDirectory) {
 
     } catch (error) {
         console.dir(error);
-        return;
+
     }
 }
 
@@ -145,10 +145,9 @@ async function generateCustomTemplateSnippets(projectName) {
                 * Template folder e ja ache -> soja tene rootdirectory te dukiye debo!
                 * Happy Snippets
              */
-            const sourceDirectory = path.join(process.cwd(), 'templates');
+            const sourceDirectory = path.join(__dirname, '..', 'templates');
             const destinationDirectory = path.join(projectName);
-
-            fse.copySync(sourceDirectory, destinationDirectory, {overwrite: 'true'}, (err) => {
+            fse.copySync(sourceDirectory, destinationDirectory, {overwrite: true}, (err) => {
                 if (err) throw new Error();
             })
             spinner.succeed();
@@ -198,7 +197,7 @@ async function boostrapWorkflow(rootDirectory) {
         if (!err) {
             const files = data;
             if (files.length > 0) return console.log(
-                logSymbols.error,
+                '💀 ⚡',
                 `Path ${chalk.green(rootDirectory)} not empty, ${chalk.red('aborting')}`
             );
         }
@@ -238,7 +237,7 @@ async function npmInstallRequiredModules(rootDirectory) {
         'Upgrading dependencies peer...');
 }
 
-export async function main() {
+async function main() {
     await buildProfileInfoBanner();
     const argsPassed = getArgs();
     const rootDirectory = path.join(process.cwd(), argsPassed[0]);
@@ -255,3 +254,6 @@ export async function main() {
 // -----------------------------------------------------------------------
 // *********************************************************
 // -----------------------------------------------------------------------
+
+
+module.exports.main = main;

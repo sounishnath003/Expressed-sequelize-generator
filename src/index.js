@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import {main} from './main.js';
+const entry = require('./main');
 
-main();
+entry.main();
