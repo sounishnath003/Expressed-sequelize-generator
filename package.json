@@ -1,6 +1,6 @@
 {
   "name": "expresssed-gen",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "An Expressed Sequelized generator",
   "main": "index.js",
   "bin": {
@@ -9,7 +9,8 @@
   "preferGlobal": true,
   "files": [
     "src/",
-    "templates/"
+    "templates/",
+    "utils"
   ],
   "scripts": {
     "dev": "nodemon --exec node src/index.js",

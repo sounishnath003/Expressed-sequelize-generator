@@ -1,6 +1,5 @@
 import cors from "cors";
 import express, { json, urlencoded } from "express";
-import fileUpload from "express-fileupload";
 import morgan from "morgan";
 import { cpus } from "os";
 import { pid } from "process";
@@ -36,6 +35,17 @@ export class Server {
     this.app.use(cors());
     this.app.use(morgan("dev"));
     this.app.use(urlencoded({ extended: false }));
+    this.errorHandlers();
+  }
+
+  private errorHandlers(): void {
+    this.app.use((err: { status: any; message: any; }, req: any, res: { status: (arg0: any) => void; send: (arg0: { status: any; message: any; }) => void; }, next: any) => {
+      res.status(err.status || 500);
+      res.send({
+        status: err.status || 500,
+        message: err.message,
+      });
+    })
   }
 
   private async internalServerStart() {
@@ -49,9 +59,9 @@ export class Server {
       this.app.use("/api", APIController);
 
       this.app.listen(this.PORT, () =>
-        console.log(
-          `[ PID:${pid} ] 🚀 Server already started on http://localhost:${this.PORT}`
-        )
+          console.log(
+              `[ PID:${pid} ] 🚀 Server already started on http://localhost:${this.PORT}`
+          )
       );
     } catch (error) {
       console.error({ error });
