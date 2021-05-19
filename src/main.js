@@ -1,13 +1,5 @@
 #!/usr/bin/env node
-const {spawn} = require('child_process');
 const path = require('path');
-const fs = require('fs');
-const fse = require('fs-extra');
-const figlet = require('figlet');
-const chalk = require('chalk');
-const ora = require('ora');
-const boxen = require('boxen');
-
 const utils = require('../utils');
 
 // measuring total time takes to generate
