@@ -1,10 +1,10 @@
 {
-  "name": "expresssed-gen",
-  "version": "1.0.7",
+  "name": "expressed-gen",
+  "version": "1.0.9",
   "description": "An Expressed Sequelized generator",
   "main": "index.js",
   "bin": {
-    "expresssed-gen": "src/index.js"
+    "expressed-gen": "src/index.js"
   },
   "preferGlobal": true,
   "files": [
