@@ -3,9 +3,8 @@ import express, { json, urlencoded } from "express";
 import morgan from "morgan";
 import { cpus } from "os";
 import { pid } from "process";
-import { connectToDatabase } from "../database";
-import { buildAssociationsBetweenSchemas } from "../database/schema";
 import { APIController } from "./controllers";
+import { Next, Request, Response } from './utils';
 
 export class Server {
   private readonly PORT = 5000 || process.env.PORT;
@@ -39,23 +38,25 @@ export class Server {
   }
 
   private errorHandlers(): void {
-    this.app.use((err: { status: any; message: any; }, req: any, res: { status: (arg0: any) => void; send: (arg0: { status: any; message: any; }) => void; }, next: any) => {
-      res.status(err.status || 500);
-      res.send({
-        status: err.status || 500,
-        message: err.message,
-      });
-    })
+    this.app.use(
+        (
+            err: { status: any; message: any },
+            req: Request,
+            res: Response,
+            next: Next
+        ) => {
+          res.status(err.status || 500);
+          res.send({
+            status: err.status || 500,
+            message: err.message,
+          });
+        }
+    );
   }
 
   private async internalServerStart() {
     try {
       await this.serverConfig();
-      await connectToDatabase();
-      await (async () => {
-        await buildAssociationsBetweenSchemas();
-      })();
-
       this.app.use("/api", APIController);
 
       this.app.listen(this.PORT, () =>
@@ -67,6 +68,4 @@ export class Server {
       console.error({ error });
     }
   }
-
-
 }

@@ -1,3 +1,11 @@
+import { db } from "../database";
+import { buildAssociationsBetweenSchemas } from "../database/schema";
 import { kickStartTheServer } from "../server";
 
-kickStartTheServer();
+function main() {
+    db.authenticate();
+    buildAssociationsBetweenSchemas();
+    kickStartTheServer();
+}
+
+main();

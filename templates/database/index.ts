@@ -1,22 +1,35 @@
-import {join} from "path";
-import {Sequelize} from "sequelize";
+import { join } from "path";
+import { Sequelize } from "sequelize";
 
-const dir = join (__dirname , "");
+class Database {
+    private dir = join(__dirname, "");
+    public schema: Sequelize;
+    constructor() {
+        this.schema = new Sequelize({
+            dialect: "sqlite",
+            storage: `${this.dir}/db-store.sqlite`,
+            database: "projectDB",
+        });
+    }
 
-export const db = new Sequelize ({
-    dialect :"sqlite" ,
-    storage :`${dir}/db-store.sqlite` ,
-    database :"projectDB" ,
-});
-
-async function connectToDatabase() {
-    try {
-        await db.authenticate ();
-        await db.sync ();
-        console.log (`## database successfully connected!!`);
-    } catch (error) {
-        throw new Error (JSON.stringify (error , null , 3));
+    /**
+     * authenticate
+     */
+    public async authenticate() {
+        try {
+            await this.schema.authenticate();
+            console.log("### Database Synced!!");
+            console.log("Connection has been established successfully.");
+            /*
+                ** Add this line by replacing 25;
+                * if Your Database is not syncing with SchemaChanges.
+                await this.schema.sync({force: true});
+             */
+            await this.schema.sync();
+        } catch (error) {
+            console.error("Unable to connect to the database:", error);
+        }
     }
 }
 
-export {connectToDatabase};
+export const db = new Database();

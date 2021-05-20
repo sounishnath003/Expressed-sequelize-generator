@@ -1,10 +1,10 @@
 import { Router, static as st } from "express";
 import createHttpError from "http-errors";
-import { SUCCESS } from "../utils";
+import { SUCCESS, Request, Response, Next } from "../utils";
 
 const router = Router();
 
-router.get("/data", async (req, res, next) => {
+router.get("/data", async (req: Request, res: Response, next: Next) => {
     try {
         res.status(200).send({
             ...SUCCESS,

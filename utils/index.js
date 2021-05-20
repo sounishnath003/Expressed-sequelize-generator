@@ -8,8 +8,11 @@ const {modifyPackageJson} = require('./modifyPackageJson')
 const {boostrapWorkflow,} = require('./bootstapWorkflow')
 const {startInstallingModules} = require('./startInstallingModules')
 
-const modulesToBeInstalled = ['install', 'express', 'sequelize', 'cors', 'morgan', 'sqlite3', 'typescript', 'ts-node', 'dotenv', 'express-fileupload', 'http-errors'];
-const moduleTypesDeclarations = ['install', '@types/express', '@types/sequelize', '@types/cors', '@types/morgan', '@types/node', '@types/express-fileupload', 'nodemon', '@types/http-errors', '-D'];
+const modulesToBeInstalled = ['install', 'express', 'sequelize', 'cors', 'morgan', 'sqlite3',
+    'typescript', 'ts-node', 'dotenv', 'express-fileupload', 'http-errors'];
+
+const moduleTypesDeclarations = ['install', '@types/express', '@types/sequelize', '@types/cors', '@types/morgan', '@types/node',
+    '@types/express-fileupload', 'nodemon', '@types/http-errors', '@types/uuid', '-D'];
 
 
 module.exports = {
