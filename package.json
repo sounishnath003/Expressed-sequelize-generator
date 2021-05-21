@@ -1,6 +1,6 @@
 {
   "name": "expressed-gen",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "An Expressed Sequelized generator",
   "main": "index.js",
   "bin": {
