@@ -34,24 +34,23 @@ export class Server {
     this.app.use(cors());
     this.app.use(morgan("dev"));
     this.app.use(urlencoded({ extended: false }));
-    this.errorHandlers();
   }
 
   private errorHandlers(): void {
+     this.app.use(
+      async (req: RequestInterface, res: ResponseInterface, next: Next) => {
+        next(createError(404, "Not Found!"));
+      }
+    );
     this.app.use(
-        (
-            err: { status: any; message: any },
-            req: Request,
-            res: Response,
-            next: Next
-        ) => {
-          res.status(err.status || 500);
-          res.send({
+      (err: any, req: RequestInterface, res: ResponseInterface, next: Next) => {
+        res.status(err.status || 500).send({
+          error: {
             status: err.status || 500,
             message: err.message,
-          });
-        }
-    );
+          },
+        });
+      }
   }
 
   private async internalServerStart() {
@@ -64,6 +63,8 @@ export class Server {
               `[ PID:${pid} ] 🚀 Server already started on http://localhost:${this.PORT}`
           )
       );
+
+	this.errorHandlers();
     } catch (error) {
       console.error({ error });
     }
