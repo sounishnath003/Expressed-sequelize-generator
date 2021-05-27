@@ -4,7 +4,13 @@ import morgan from "morgan";
 import { cpus } from "os";
 import { pid } from "process";
 import { APIController } from "./controllers";
-import { Next, Request, Response } from './utils';
+import {
+  createError,
+  Next,
+  RequestInterface,
+  ResponseInterface,
+} from "./utils";
+import cookieParser from "cookie-parser";
 
 export class Server {
   private readonly PORT = 5000 || process.env.PORT;
@@ -25,7 +31,7 @@ export class Server {
     // } else {
     //   this.internalServerStart();
     // }
-    this.internalServerStart();
+    this.start();
   }
 
   private async serverConfig() {
@@ -34,37 +40,38 @@ export class Server {
     this.app.use(cors());
     this.app.use(morgan("dev"));
     this.app.use(urlencoded({ extended: false }));
+    this.app.use(cookieParser());
   }
 
   private errorHandlers(): void {
-     this.app.use(
-      async (req: RequestInterface, res: ResponseInterface, next: Next) => {
-        next(createError(404, "Not Found!"));
-      }
+    this.app.use(
+        async (req: RequestInterface, res: ResponseInterface, next: Next) => {
+          next(createError(404, "Not Found!"));
+        }
     );
     this.app.use(
-      (err: any, req: RequestInterface, res: ResponseInterface, next: Next) => {
-        res.status(err.status || 500).send({
-          error: {
-            status: err.status || 500,
-            message: err.message,
-          },
-        });
-      }
+        (err: any, req: RequestInterface, res: ResponseInterface, next: Next) => {
+          res.status(err.status || 500).send({
+            error: {
+              status: err.status || 500,
+              message: err.message,
+            },
+          });
+        }
+    );
   }
 
-  private async internalServerStart() {
+  private async start() {
     try {
       await this.serverConfig();
-      this.app.use("/api", APIController);
-
       this.app.listen(this.PORT, () =>
           console.log(
               `[ PID:${pid} ] 🚀 Server already started on http://localhost:${this.PORT}`
           )
       );
+      this.app.use("/api", APIController);
 
-	this.errorHandlers();
+      this.errorHandlers();
     } catch (error) {
       console.error({ error });
     }

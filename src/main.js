@@ -25,6 +25,7 @@ async function main() {
         await utils.generateCustomTemplateSnippets(argsPassed[0]);
         await utils.modifyPackageJson(argsPassed[0]);
         await npmInstallRequiredModules(rootDirectory);
+        await utils.generateEnvironmentSecrets(rootDirectory);
         await utils.whenDone(startTime, argsPassed[0])
     })()
 }
