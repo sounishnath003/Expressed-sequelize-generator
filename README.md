@@ -1,6 +1,9 @@
 # Expressed
 An Expressed Sequelized generator
 
+<a href="https://github.com/sounishnath003/Expressed-sequelize-generator/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/sounishnath003/Expressed-sequelize-generator?color=green&style=flat-square"></a>
+<a href="https://github.com/sounishnath003/Expressed-sequelize-generator/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/sounishnath003/Expressed-sequelize-generator?style=flat-square"></a>
+
 ### Patch v1.0.13 includes
 - ✅ Environment Secrets Token are now pre-generated 64bit
 
